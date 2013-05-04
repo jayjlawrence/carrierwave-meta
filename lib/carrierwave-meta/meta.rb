@@ -50,7 +50,12 @@ module CarrierWave
 
     def get_dimensions
       [].tap do |size|
-        if self.file.content_type =~ /image|postscript|pdf/
+
+        if defined?(::Dimensions) && self.file.content_type =~ /image\/(png|jpeg|gif)/
+          return Dimensions.dimensions(self.file.file)
+        end
+
+        if (defined?(::Magick::Image) || defined?(::MiniMagick::Image) || defined?(::Sorcery) ) && self.file.content_type =~ /image|postscript|pdf/
           manipulate! do |img|
             if defined?(::Magick::Image) && img.is_a?(::Magick::Image)
               size << img.columns
