@@ -26,6 +26,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency(%q<sqlite3-ruby>)
   s.add_development_dependency(%q<rmagick>)
   s.add_development_dependency(%q<mini_magick>)
-  s.add_development_dependency(%q<mime-types>)
+  s.add_development_dependency 'mime-types', '>= 0', '>= 0'
   s.add_development_dependency(%q<carrierwave-imagesorcery>)
 end
